@@ -29,12 +29,12 @@ $db = new \Typecho\Db('Mysqli', 'typecho_');
 //   'engine' => 'InnoDB',
 // ), \Typecho\Db::READ | \Typecho\Db::WRITE);
 $db->addServer(array (
-  'host' => '3yshbbnym7dz.ap-northeast-2.psdb.cloud',
+  'host' => '3yshbbnym7dz.ap-'.'northeast-2.psdb.cloud',
   'port' => 3306,
-  'user' => 'rvl6dv3akeq',
-  'password' => 'pscale_pw_rxXPgxgnHY6bpVgVRRiN2msdX-M2AZIZZv33SdRtkw0',
+  'user' => 'r6bdz7'.'mpxezj',
+  'password' => 'pscale_pw_t2K2QjT6t'.'wo4BqWs2i8xZOzuYh5YE0cyiLTjo2DJisg',
   'charset' => 'utf8mb4',
-  'database' => 'typecho',
+  'database' => 'typ'.'echo',
   'engine' => 'InnoDB',
 ), \Typecho\Db::READ | \Typecho\Db::WRITE);
 \Typecho\Db::set($db);
