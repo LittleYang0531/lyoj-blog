@@ -66,7 +66,7 @@ if(is_array($_GET)&&count($_GET)>0)
         <div class="mdui-col-md-8">
             <?php $comments->listComments(); ?>
         </div>
-        <div class="mdui-col-md-4 comTool">
+        <!-- <div class="mdui-col-md-4 comTool">
             <h4>标签云</h4>
             <div class="tags">
                 <?php $this->widget('Widget_Metas_Tag_Cloud', 'sort=mid&ignoreZeroCount=1&desc=0&limit=30')->to($tags); ?>
@@ -96,7 +96,7 @@ if(is_array($_GET)&&count($_GET)>0)
                     $(this).attr('title',$(this).find('.visitorName').text());
                 })
             </script>
-        </div>
+        </div> -->
     </div>
     <?php function threadedComments($comments, $options) {
         $commentClass = '';

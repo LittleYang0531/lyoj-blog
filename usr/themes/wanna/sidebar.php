@@ -13,7 +13,7 @@
     <div class="v-menu-assembly">
         <ul class="vMenu-item-list">
             <?php $this->widget('Widget_Contents_Page_List')->to($pages); ?>
-            <?php while($pages->next()): ?>
+            <?php while($pages->next()):  ?>
                 <a<?php if($this->is('page', $pages->slug)): ?> class="current"<?php endif; ?> href="<?php $pages->permalink(); ?>" title="<?php $pages->title(); ?>"><li class="mdui-ripple"><?php $pages->title(); ?></li></a>
             <?php endwhile; ?>
             <a href="<?php $this->options->feedUrl(); ?>"><li class="mdui-ripple">RSS</li></a>

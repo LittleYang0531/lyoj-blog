@@ -1,5 +1,31 @@
 <?php if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
 <?php $this->need('header.php'); ?>
+<?php
+function geturl($url, $cookie) {
+	$headerArray = array("User-Agent: typecho");
+	$ch = curl_init();
+	curl_setopt($ch, CURLOPT_URL, $url);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+	curl_setopt($ch, CURLOPT_HTTPHEADER, $headerArray);
+	curl_setopt($ch, CURLOPT_COOKIE, $cookie);
+	$output = curl_exec($ch);
+	curl_close($ch);
+	return $output;
+}
+
+global $name; global $prefix;
+$api = "https://api.github.com/repos/LittleYang0531/image/contents/github";
+$prefix = "https://github-raw.littleyang.ml/LittleYang0531/image/main/github/";
+$name = array(); $json = geturl($api, "");
+$arr = json_decode($json, true);
+for ($i = 0; $arr != null && $i < count($arr); $i++) $name[] = $arr[$i]["name"];
+function random_picture() {
+    global $name; global $prefix;
+    if ($name == null) return ""; 
+    $num = rand(0, count($name) - 1);
+    return $prefix . $name[$num];
+}
+?>
 <div class="mdui-container mdui-typo searchData" role="main">
     <h3><?php $this->archiveTitle(array(
             'category'  =>  _t('%s 下的文章'),
@@ -17,11 +43,11 @@
                         <?php else: ?>
                             <?php if($this->options->slimg && 'showoff'==$this->options->slimg): ?><a href="<?php $this->permalink() ?>" ><?php showThumbnail($this); ?></a>
                             <?php else: ?>
-                                <div class="cardImage-img" style="background-image: url('<?php showThumbnail($this); ?>')"></div>
+                                <div class="cardImage-img" style="background-image: url('<?php echo random_picture(); ?>')"></div>
                             <?php endif; ?>
                         <?php endif; ?>
                     </div>
-                    <h5><?php $this->title() ?></h5>
+                    <h5><a href="<?php $this->permalink(); ?>"><?php $this->title() ?></a></h5>
                     <p>
                         <?php _e('作者: '); ?><a itemprop="name" href="<?php $this->author->permalink(); ?>" rel="author"><?php $this->author(); ?></a>
                         &nbsp<?php _e('时间: '); ?><time datetime="<?php $this->date('c'); ?>" itemprop="datePublished"><?php $this->date(); ?></time>
@@ -33,7 +59,7 @@
                     </p>
                     <div class="mdui-divider" style="margin-bottom: 10px"></div>
                     <p>
-                        <?php $this->excerpt(10,'...'); ?>
+                        <?php $this->excerpt(50,'...'); ?>
                     </p>
                 </div>
             </article>

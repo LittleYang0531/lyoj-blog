@@ -25,10 +25,10 @@ $api = "https://api.github.com/repos/LittleYang0531/image/contents/github";
 $prefix = "https://github-raw.littleyang.ml/LittleYang0531/image/main/github/";
 $name = array(); $json = geturl($api, "");
 $arr = json_decode($json, true);
-for ($i = 0; $i < count($arr); $i++) $name[] = $arr[$i]["name"];
+for ($i = 0; $arr != null && $i < count($arr); $i++) $name[] = $arr[$i]["name"];
 function random_picture() {
     global $name; global $prefix;
-    if (count($name) == 0) return ""; 
+    if ($name == null) return ""; 
     $num = rand(0, count($name) - 1);
     return $prefix . $name[$num];
 }
@@ -61,15 +61,17 @@ $this->need('header.php');
                         </div>
                         <div class="cardContent">
                             <div class="mdui-text-truncate pageCard-data">
-                                <a><?php $this->author(); ?></a>&nbsp
+                                <a href="<?php $this->author->permalink(); ?>"><?php $this->author(); ?></a>&nbsp
                                 <a><?php $this->date(); ?></a>&nbsp
                                 <a><?php $this->category(','); ?></a>
                             </div>
                             <div class="pageCard-excerpt">
                                 <div class="pageTitle">
-                                    <h4><?php $this->title() ?></h4>
+                                    <!-- <a href="<?php $this->permalink() ?>"> -->
+                                        <h4><a href="<?php $this->permalink() ?>"><?php $this->title() ?></a></h4>
+                                    <!-- </a> -->
                                 </div>
-                                <p><?php $this->excerpt(50,'...'); ?></p>
+                                <p><?php $this->excerpt(100,'...'); ?></p>
                             </div>
                             <div class="ovo">
                                 <a href="<?php $this->permalink() ?>">Link</a>

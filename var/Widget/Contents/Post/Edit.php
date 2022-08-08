@@ -137,9 +137,11 @@ class Edit extends Contents implements ActionInterface
      */
     public function date($format = null)
     {
+        if ($format == null) $format = "Y-m-d H:i";
         if (isset($this->created)) {
-            parent::date($format);
+            echo date($format, $this->created);
         } else {
+            // parent::date($format);
             echo date($format, $this->options->time + $this->options->timezone - $this->options->serverTimezone);
         }
     }

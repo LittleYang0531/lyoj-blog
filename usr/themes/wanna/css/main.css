@@ -8,7 +8,24 @@ h1,h2,h3,h4,h5,h6 {
 a {
     text-decoration: none;
 }
-
+h4 > a {
+    color: green;
+    cursor: pointer;
+    text-decoration: none;
+    transition: color .4s;
+}
+h4 > a:link, h4 > a:visited {
+    color: green;
+    text-decoration: none;
+}
+h4 > a:active {
+    color: red;
+    text-decoration: none;
+}
+h4 > a:hover {
+    color: red!important;
+    text-decoration: none;
+}
 
 /* footer */
 footer {
