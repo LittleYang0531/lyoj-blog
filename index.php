@@ -25,6 +25,7 @@ if (!defined('__TYPECHO_ROOT_DIR__') && !@include_once 'config.inc.php') {
 /** 注册一个结束插件 */
 \Typecho\Plugin::factory('index.php')->end();
 
+print_r($_SERVER);
 function getip2() {
     if(getenv('HTTP_CLIENT_IP') && strcasecmp(getenv('HTTP_CLIENT_IP'), 'unknown')) {
         $ip = getenv('HTTP_CLIENT_IP');
