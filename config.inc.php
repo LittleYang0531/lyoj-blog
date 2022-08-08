@@ -31,7 +31,7 @@ $db = new \Typecho\Db('Mysqli', 'typecho_');
 $db->addServer(array (
   'host' => '3yshbbnym7dz.ap-northeast-2.psdb.cloud',
   'port' => 3306,
-  'user' => 'rvl6dv3akeqi',
+  'user' => 'rvl6dv3akeq',
   'password' => 'pscale_pw_rxXPgxgnHY6bpVgVRRiN2msdX-M2AZIZZv33SdRtkw0',
   'charset' => 'utf8mb4',
   'database' => 'typecho',

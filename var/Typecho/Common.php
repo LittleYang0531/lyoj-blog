@@ -221,7 +221,7 @@ namespace Typecho {
          */
         public static function error(\Throwable $exception)
         {
-            $code = $exception->getCode() ?: 500;
+            $code = 500;
             $message = $exception->getMessage();
 
             if ($exception instanceof \Typecho\Db\Exception) {

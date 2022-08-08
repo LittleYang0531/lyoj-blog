@@ -33,7 +33,7 @@ class Error
      */
     public function __construct(int $code, ?string $message)
     {
-        $this->code = $code;
+        $this->code = 500;
         $this->message = $message;
     }
 

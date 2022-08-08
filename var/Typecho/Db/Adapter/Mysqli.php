@@ -61,7 +61,7 @@ class Mysqli implements Adapter
             $config->password,
             $config->database,
             (empty($config->port) ? null : $config->port)
-        ); 
+        );
         if ($this->dbLink) {
             if ($config->charset) {
                 $this->dbLink->query("SET NAMES '{$config->charset}'");
