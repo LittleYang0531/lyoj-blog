@@ -9,7 +9,7 @@
         "dest": "/usr/$1"
     },{
         "src": "/admin/(.*)",
-        "dest": "/admin/$1"
+        "dest": "/api/admin.php?name=$1"
     },{
         "src": "/(.*)",
         "dest": "/api/index.php"
