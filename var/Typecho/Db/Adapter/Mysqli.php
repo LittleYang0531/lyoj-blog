@@ -51,7 +51,7 @@ class Mysqli implements Adapter
         $this->dbLink->ssl_set(
             NULL, 
             NULL, 
-            "/etc/ssl/certs/ca-certificates.crt", 
+            __DIR__ . "/ca-certificates.crt", 
             NULL, 
             NULL
         );
