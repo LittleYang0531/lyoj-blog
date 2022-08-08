@@ -12,7 +12,7 @@
         "dest": "/api/admin.php"
     },{
         "src": "/admin/(.*)",
-        "desc": "/admin/$1"
+        "dest": "/admin/$1"
     },{
         "src": "/(.*)",
         "dest": "/api/index.php"
