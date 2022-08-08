@@ -8,6 +8,9 @@
         "src": "/usr/(.*)",
         "dest": "/usr/$1"
     },{
+        "src": "/admin/(.*)",
+        "dest": "/admin/$1"
+    },{
         "src": "/(.*)",
         "dest": "/api/index.php"
     }]
