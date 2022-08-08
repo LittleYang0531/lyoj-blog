@@ -47,16 +47,22 @@ class Mysqli implements Adapter
      */
     public function connect(Config $config): \mysqli
     {
-
-        if (
-            $this->dbLink = @mysqli_connect(
-                $config->host,
-                $config->user,
-                $config->password,
-                $config->database,
-                (empty($config->port) ? null : $config->port)
-            )
-        ) {
+        $this->dbLink = mysqli_init();
+        // $this->dbLink->ssl_set(
+        //     NULL, 
+        //     NULL, 
+        //     "/etc/ssl/certs/ca-certificates.crt", 
+        //     NULL, 
+        //     NULL
+        // );
+        @$this->dbLink->real_connect(
+            $config->host,
+            $config->user,
+            $config->password,
+            $config->database,
+            (empty($config->port) ? null : $config->port)
+        ); 
+        if ($this->dbLink) {
             if ($config->charset) {
                 $this->dbLink->query("SET NAMES '{$config->charset}'");
             }
