@@ -28,7 +28,6 @@ prepros.config
 usr/uploads/
 usr/*.db
 usr/plugins/
-usr/themes/wanna
 !usr/plugins/HelloWorld
 node_modules/
 /tools/tmp/
