@@ -223,6 +223,8 @@ namespace Typecho {
         {
             $code = 500;
             $message = $exception->getMessage();
+            $trace = $exception -> getTraceAsString();
+
 
             if ($exception instanceof \Typecho\Db\Exception) {
                 $code = 500;
@@ -237,6 +239,7 @@ namespace Typecho {
                     $message = 'Database Query Error';
                 }
             }
+            $message .= "\n".$trace;
 
             /** 设置http code */
             if (is_numeric($code) && $code > 200) {
