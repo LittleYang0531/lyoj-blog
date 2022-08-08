@@ -25,18 +25,8 @@ if (!defined('__TYPECHO_ROOT_DIR__') && !@include_once 'config.inc.php') {
 /** 注册一个结束插件 */
 \Typecho\Plugin::factory('index.php')->end();
 
-print_r($_SERVER);
 function getip2() {
-    if(getenv('HTTP_CLIENT_IP') && strcasecmp(getenv('HTTP_CLIENT_IP'), 'unknown')) {
-        $ip = getenv('HTTP_CLIENT_IP');
-    } else if(getenv('HTTP_X_FORWARDED_FOR') && strcasecmp(getenv('HTTP_X_FORWARDED_FOR'), 'unknown')) {
-        $ip = getenv('HTTP_X_FORWARDED_FOR');
-    } else if(getenv('REMOTE_ADDR') && strcasecmp(getenv('REMOTE_ADDR'), 'unknown')) {
-        $ip = getenv('REMOTE_ADDR');
-    } else if(isset($_SERVER['REMOTE_ADDR']) && $_SERVER['REMOTE_ADDR'] && strcasecmp($_SERVER['REMOTE_ADDR'], 'unknown')) {
-        $ip = $_SERVER['REMOTE_ADDR'];
-    } $res = preg_match ( '/[\d\.]{7,15}/', $ip, $matches ) ? $matches [0] : '';
-    return $res;
+    return $_SERVER["HTTP_X_REAL_IP"];
 }
 function geturl2() {
     $protocol = ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
