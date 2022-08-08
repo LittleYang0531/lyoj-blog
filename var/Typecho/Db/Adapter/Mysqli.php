@@ -48,13 +48,13 @@ class Mysqli implements Adapter
     public function connect(Config $config): \mysqli
     {
         $this->dbLink = mysqli_init();
-        // $this->dbLink->ssl_set(
-        //     NULL, 
-        //     NULL, 
-        //     "/etc/ssl/certs/ca-certificates.crt", 
-        //     NULL, 
-        //     NULL
-        // );
+        $this->dbLink->ssl_set(
+            NULL, 
+            NULL, 
+            "/etc/ssl/certs/ca-certificates.crt", 
+            NULL, 
+            NULL
+        );
         @$this->dbLink->real_connect(
             $config->host,
             $config->user,
