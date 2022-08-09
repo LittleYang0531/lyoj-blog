@@ -46,7 +46,7 @@ if(is_array($_GET)&&count($_GET)>0)
                             <input type="email" placeholder="邮箱" name="mail" value="<?php $this->remember('mail'); ?>"<?php if ($this->options->commentsRequireMail): ?> required<?php endif; ?> />
                         </div>
                         <div class="mdui-col-xs-12 mdui-col-md-4 getData-input" id="urls">
-                            <input type="text" name="url" id="urls" placeholder="http://" value="<?php $this->remember('url'); ?>"<?php if ($this->options->commentsRequireURL): ?> required<?php endif; ?>/>
+                            <input type="text" name="url" id="urls" placeholder="头像地址, 以 http(s):// 开头" value="<?php $this->remember('url'); ?>"<?php if ($this->options->commentsRequireURL): ?> required<?php endif; ?>/>
                         </div>
                     </div>
                 <?php endif; ?>
@@ -63,7 +63,7 @@ if(is_array($_GET)&&count($_GET)>0)
         <?php endif; ?> <!-- 判断是否允许评论 -->
     </div>
     <div class="mdui-row comFiled">
-        <div class="mdui-col-md-8">
+        <div class="mdui-col-md-8" style="width:100%">
             <?php $comments->listComments(); ?>
         </div>
         <!-- <div class="mdui-col-md-4 comTool">
@@ -98,8 +98,10 @@ if(is_array($_GET)&&count($_GET)>0)
             </script>
         </div> -->
     </div>
-    <?php function threadedComments($comments, $options) {
-        $commentClass = '';
+    <?php 
+    global $db; $db = \Typecho\Db::get();
+    function threadedComments($comments, $options) {
+        $commentClass = ''; global $db;
         if ($comments->authorId) {
             if ($comments->authorId == $comments->ownerId) {
                 $commentClass .= ' comment-by-author';
@@ -119,7 +121,12 @@ if(is_array($_GET)&&count($_GET)>0)
             </div>
             <div class="userData">
                 <div class="userIcon">
-                    <?php $comments->gravatar('60', ''); ?>
+                    <?php
+                        $id = $comments -> coid;
+                        $res = $db -> Query("SELECT url FROM typecho_comments WHERE coid = $id");
+                        $res = $db -> fetchAll($res);
+                        echo "<img width='60px' height='60px' src='".$res[0]["url"]."'/>";
+                    ?>
                 </div>
                 <div class="userName">
                     <div class="name"><?php $comments->author(); ?></div>

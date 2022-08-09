@@ -10,6 +10,9 @@ $header = '<link rel="stylesheet" href="' . $options->adminStaticUrl('css', 'nor
 /** 注册一个初始化插件 */
 $header = \Typecho\Plugin::factory('admin/header.php')->header($header);
 
+global $db;
+$db = \Typecho\Db::get();
+
 ?><!DOCTYPE HTML>
 <html>
     <head>

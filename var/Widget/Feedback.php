@@ -150,6 +150,7 @@ class Feedback extends Comments implements ActionInterface
     private function comment()
     {
         // 使用安全模块保护
+
         $this->security->enable($this->options->commentsAntiSpam);
         $this->security->protect();
 
@@ -223,7 +224,7 @@ class Feedback extends Comments implements ActionInterface
         } else {
             $comment['author'] = $this->user->screenName;
             $comment['mail'] = $this->user->mail;
-            $comment['url'] = $this->user->url;
+            $comment['url'] = $this->user->icon;
 
             /** 记录登录用户的id */
             $comment['authorId'] = $this->user->uid;

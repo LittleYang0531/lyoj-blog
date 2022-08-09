@@ -187,7 +187,7 @@ class Profile extends Edit implements ActionInterface
         }
 
         /** 取出数据 */
-        $user = $this->request->from('mail', 'screenName', 'url');
+        $user = $this->request->from('mail', 'screenName', 'url', 'icon');
         $user['screenName'] = empty($user['screenName']) ? $user['name'] : $user['screenName'];
 
         /** 更新数据 */
@@ -219,13 +219,17 @@ class Profile extends Edit implements ActionInterface
         $form->addInput($screenName);
 
         /** 个人主页地址 */
-        $url = new Form\Element\Text('url', null, null, _t('个人主页地址'), _t('此用户的个人主页地址, 请用 <code>http://</code> 开头.'));
+        $url = new Form\Element\Text('url', null, null, _t('个人主页地址'), _t('此用户的个人主页地址, 请用 <code>http(s)://</code> 开头.'));
         $form->addInput($url);
 
         /** 电子邮箱地址 */
         $mail = new Form\Element\Text('mail', null, null, _t('邮件地址') . ' *', _t('电子邮箱地址将作为此用户的主要联系方式.')
             . '<br />' . _t('请不要与系统中现有的电子邮箱地址重复.'));
         $form->addInput($mail);
+
+        /** 个人头像地址 */
+        $icon = new Form\Element\Text('icon', null, null, _t('个人头像') . ' *', _t('此用户的个人头像地址, 请用 <code>http(s)://</code> 开头.') . "</br>" . _t("本站不提供任何头像存储服务."));
+        $form->addInput($icon);
 
         /** 用户动作 */
         $do = new Form\Element\Hidden('do', null, 'profile');
@@ -239,6 +243,7 @@ class Profile extends Edit implements ActionInterface
         $screenName->value($this->user->screenName);
         $url->value($this->user->url);
         $mail->value($this->user->mail);
+        $icon->value($this->user->icon);
 
         /** 给表单增加规则 */
         $screenName->addRule([$this, 'screenNameExists'], _t('昵称已经存在'));
@@ -247,6 +252,7 @@ class Profile extends Edit implements ActionInterface
         $mail->addRule('required', _t('必须填写电子邮箱'));
         $mail->addRule([$this, 'mailExists'], _t('电子邮箱地址已经存在'));
         $mail->addRule('email', _t('电子邮箱格式错误'));
+        $icon->addRule('url', _t('个人头像地址格式错误'));
 
         return $form;
     }

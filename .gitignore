@@ -25,11 +25,10 @@
 .sass-cache
 config.rb
 prepros.config
-usr/uploads/
 usr/*.db
-usr/plugins/
 !usr/plugins/HelloWorld
 node_modules/
 /tools/tmp/
 backup.sh
+data.sql
 mysql.sh

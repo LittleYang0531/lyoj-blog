@@ -673,7 +673,7 @@ header {
     top: 5px;
 }
 #urls:after {
-    background: lightblue;
+    /* background: lightblue; */
 }
 .getData-input > input,#content > textarea {
     width: 100%;
@@ -778,8 +778,7 @@ header {
     content: '';
     position: absolute;
     bottom: 0;
-    width: 80%;
-    right: 10%;
+    width: 100%;
     height: 1px;
     background: rgba(0,0,0,.1);
 }
@@ -831,8 +830,10 @@ header {
 
 .name {
     font-size: 16px;
-    height: 36px;
-    line-height: 44px;
+    height: 26px;
+}
+.name > a {
+    line-height: 26px!important;
 }
 .Jurisdiction {
     font-size: 13px;
@@ -846,6 +847,9 @@ header {
 .comment-list {
     position: relative;
     padding-left: 0 !important;
+}
+.comment-children {
+    margin-left: 50px;
 }
 /*archive*/
 .vCard {

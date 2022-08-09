@@ -119,12 +119,13 @@ $isAllComments = ('on' == $request->get('__typecho_all_comments') || 'on' == \Ty
                             </td>
                             <td valign="top" class="kit-hidden-mb">
                                 <div class="comment-avatar">
-                                    <?php if ('comment' == $comments->type): ?>
-                                    <?php $comments->gravatar(40); ?>
-                                    <?php endif; ?>
-                                    <?php if ('comment' != $comments->type): ?>
-                                    <?php _e('引用'); ?>
-                                    <?php endif; ?>
+                                    <?php
+                                        global $db;
+                                        $id = $comments -> coid;
+                                        $res = $db -> Query("SELECT url FROM typecho_comments WHERE coid = $id");
+                                        $res = $db -> fetchAll($res);
+                                        echo "<img width='60px' height='60px' src='".$res[0]["url"]."'/>";
+                                    ?>
                                 </div>
                             </td>
                             <td valign="top" class="comment-head">
