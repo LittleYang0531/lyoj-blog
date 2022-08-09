@@ -1,7 +1,7 @@
 {
     "functions": {
         "api/*.php": {
-            "runtime": "vercel-community/php@0.5.1"
+            "runtime": "https://github.com/vercel-community/php.git"
         }
     },
     "routes": [{
