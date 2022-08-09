@@ -26,11 +26,13 @@ if (!defined('__TYPECHO_ROOT_DIR__') && !@include_once 'config.inc.php') {
 \Typecho\Plugin::factory('index.php')->end();
 
 function getip2() {
-    return $_SERVER["HTTP_X_REAL_IP"];
+    if (array_key_exists("HTTP_X_REAL_IP", $_SERVER)) return $_SERVER["HTTP_X_REAL_IP"];
+    else return $_SERVER["REMOTE_ADDR"];
 }
 function geturl2() {
-    $protocol = ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
-    $url = $protocol .  $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+    if (array_key_exists("HTTP_X_FORWARDED_PROTO", $_SERVER)) $protocol = $_SERVER["HTTP_X_FORWARDED_PROTO"];
+    else $protocol = $_SERVER["REQUEST_SCHEME"];
+    $url = $protocol . "://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
     return $url;
 }
 $db = \Typecho\Db::get();

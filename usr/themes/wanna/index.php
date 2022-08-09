@@ -22,7 +22,7 @@ function geturl($url, $cookie) {
 
 global $name; global $prefix;
 $api = "https://api.github.com/repos/LittleYang0531/image/contents/github";
-$prefix = "https://github-raw.littleyang.ml/LittleYang0531/image/main/github/";
+$prefix = "https://pic.littleyang.ml/github/";
 $name = array(); $json = geturl($api, "");
 $arr = json_decode($json, true);
 for ($i = 0; $arr != null && $i < count($arr); $i++) $name[] = $arr[$i]["name"];

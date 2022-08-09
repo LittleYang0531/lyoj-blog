@@ -222,7 +222,7 @@ class IPQuery
 
 ?>
 
-<div style="margin: auto; width: 1375px; margin-top: 50px">
+<div class="container" style="margin: auto; max-width: 1400px!important; margin-top: 50px">
     <h2>访客信息</h2>
     <table border="1">
         <tbody>
@@ -230,14 +230,15 @@ class IPQuery
                 <th style="width:125px">IP信息</th>
                 <th style="width:125px">IP起始段</th>
                 <th style="width:125px">IP结束段</th>
-                <th style="width:100px">实际地址</th>
+                <th style="width:125px">实际地址</th>
                 <th style="width:200px">运营商</th>
                 <th style="width:200px">访问时间</th>
                 <th style="width:500px">访问页面</th>
             </tr>
             <?php
+                date_default_timezone_set("Asia/Chongqing");
                 $db = \Typecho\Db::get();
-                $res = $db->Query("SELECT * FROM typecho_visitors LIMIT 100");
+                $res = $db->Query("SELECT * FROM typecho_visitors ORDER BY time DESC LIMIT 100");
                 $res = $db->fetchAll($res); $ipq = new IPQuery();
                 for ($i = 0; $i < count($res); $i++) {
                     echo "<tr>"; $info = $ipq->query($res[$i]["ip"]);
@@ -247,7 +248,7 @@ class IPQuery
                     echo "<td style='text-align:center'>".$info["pos"]."</td>\n";
                     echo "<td style='text-align:center'>".$info["isp"]."</td>\n";
                     echo "<td style='text-align:center'>".date("Y-m-d H:i:s", $res[$i]["time"])."</td>\n";
-                    echo "<td>".$res[$i]["page"]."</td>\n";
+                    echo "<td style='padding-left:5px'>".$res[$i]["page"]."</td>\n";
                     echo "</tr>";
                 }
             ?>

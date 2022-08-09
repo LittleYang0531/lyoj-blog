@@ -29,11 +29,11 @@
         </form>
         <div class="header-tool">
             <?php if($this->user->hasLogin()): ?>
-            <a href="<?php $this->options->adminUrl(); ?>">
+            <a href="<?php $this->options->adminUrl(); echo "index.php"; ?>">
                 <button class="loginBtn mdui-ripple">后台</button>
             </a>
             <?php else: ?>
-            <a href="<?php $this->options->adminUrl(); ?>">
+            <a href="<?php $this->options->adminUrl(); echo "index.php"; ?>">
                 <button class="loginBtn mdui-ripple">登录</button>
             </a>
             <?php endif; ?>
