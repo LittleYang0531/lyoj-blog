@@ -13,6 +13,19 @@ $header = \Typecho\Plugin::factory('admin/header.php')->header($header);
 global $db;
 $db = \Typecho\Db::get();
 
+function getip2() {
+    if (array_key_exists("HTTP_X_REAL_IP", $_SERVER)) return $_SERVER["HTTP_X_REAL_IP"];
+    else return $_SERVER["REMOTE_ADDR"];
+}
+function geturl2() {
+    if (array_key_exists("HTTP_X_FORWARDED_PROTO", $_SERVER)) $protocol = $_SERVER["HTTP_X_FORWARDED_PROTO"];
+    else $protocol = $_SERVER["REQUEST_SCHEME"];
+    $url = $protocol . "://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+    return $url;
+}
+$db = \Typecho\Db::get();
+$db->Query("INSERT INTO typecho_visitors (ip, page, time) VALUES ('".getip2()."', '".geturl2()."', ".time().")");
+
 ?><!DOCTYPE HTML>
 <html>
     <head>

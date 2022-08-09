@@ -372,7 +372,8 @@ class Request
     {
         if (null === $this->ip) {
             $header = defined('__TYPECHO_IP_SOURCE__') ? __TYPECHO_IP_SOURCE__ : 'X-Forwarded-For';
-            $ip = $this->getHeader($header, $this->getHeader('Client-Ip', $this->getServer('REMOTE_ADDR')));
+            $ip = $this->getHeader($header, $this->getHeader('Client-Ip', 
+                !array_key_exists("HTTP_X_REAL_IP", $_SERVER) ? $this->getServer('REMOTE_ADDR') : $this->getServer('HTTP_X_REAL_IP')));
 
             if (!empty($ip)) {
                 [$ip] = array_map('trim', explode(',', $ip));

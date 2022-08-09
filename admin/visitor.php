@@ -5,15 +5,6 @@ include 'menu.php';
 ?>
 
 <?php
-function getIpInfo(string $ip = '')
-{
-	// 可以自己找第三方接口，返回数据不一样
-    $url = "http://whois.pconline.com.cn/ip.jsp?ip=".$ip;
-    $res = file_get_contents($url);
-    // 因为这个接口返回的值gb2312编码，且有换行符，所以做以下处理
-    return preg_replace("/\s/","", iconv("gb2312", "utf-8", $res));
-}
-
 class IPQuery
 {
     private $fh;        // IP数据库文件句柄
@@ -219,7 +210,6 @@ class IPQuery
         $this->fp = null;
     }
 }
-
 ?>
 
 <div class="container" style="margin: auto; max-width: 1400px!important; margin-top: 50px">

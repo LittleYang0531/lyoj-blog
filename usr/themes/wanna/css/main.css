@@ -833,10 +833,11 @@ header {
     height: 26px;
 }
 .name > a {
-    line-height: 26px!important;
+    line-height: 30px!important;
 }
 .Jurisdiction {
     font-size: 13px;
+    line-height: 17px;
 }
 .userBB-Content {
     width: 100%;
