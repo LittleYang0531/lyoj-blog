@@ -1,7 +1,6 @@
 {
     "functions": {
         "api/*.php": {
-            "memory": 1024,
             "runtime": "vercel-php@0.5.1"
         }
     },

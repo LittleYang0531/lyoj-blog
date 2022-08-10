@@ -32,3 +32,4 @@ node_modules/
 backup.sh
 data.sql
 mysql.sh
+/api/admin.php
