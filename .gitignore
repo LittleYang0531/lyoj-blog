@@ -31,5 +31,4 @@ node_modules/
 /tools/tmp/
 backup.sh
 data.sql
-mysql.sh
-/api/admin.php
+mysql.sha
