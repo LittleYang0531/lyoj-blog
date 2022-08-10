@@ -19,7 +19,7 @@ class IPQuery
     private $first;     // 第一条索引
     private $last;      // 最后一条索引
     private $total;     // 索引总数
-    private $dbFile = __DIR__ . DIRECTORY_SEPARATOR . 'qqwry.dat';      // 纯真 IP 数据库文件存放路径
+    private $dbFile = __DIR__ . '/../../../admin/qqwry.dat';      // 纯真 IP 数据库文件存放路径
     private $dbExpires = 0;
 
     // 构造函数

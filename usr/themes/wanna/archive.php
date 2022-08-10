@@ -1,13 +1,28 @@
 <?php if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
 <?php $this->need('header.php'); ?>
 <?php
+function geturl($url, $cookie) {
+	$headerArray = array("User-Agent: typecho");
+	$ch = curl_init();
+	curl_setopt($ch, CURLOPT_URL, $url);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+	curl_setopt($ch, CURLOPT_HTTPHEADER, $headerArray);
+	curl_setopt($ch, CURLOPT_COOKIE, $cookie);
+	$output = curl_exec($ch);
+	curl_close($ch);
+	return $output;
+}
+
 global $name; global $prefix;
-$name = scandir(__TYPECHO_ROOT_DIR__ . "/usr/uploads");
-$prefix = "//" . $_SERVER["HTTP_HOST"] . "/usr/uploads/";
+$api = "https://api.github.com/repos/LittleYang0531/image/contents/github";
+$prefix = "https://pic.littleyang.ml/github/";
+$name = array(); $json = geturl($api, "");
+$arr = json_decode($json, true);
+for ($i = 0; $arr != null && $i < count($arr); $i++) $name[] = $arr[$i]["name"];
 function random_picture() {
     global $name; global $prefix;
-    if ($name == null) return "";
-    $num = rand(2, count($name) - 1);
+    if ($name == null) return ""; 
+    $num = rand(0, count($name) - 1);
     return $prefix . $name[$num];
 }
 ?>
