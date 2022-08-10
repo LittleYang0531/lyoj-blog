@@ -118,11 +118,17 @@ $this->need('header.php');
                                     <div class="boaCon marCenter">
                                         <ul class="reply-comments">
                                             <?php
+                                            $db = \Typecho\Db::get();
                                             $this->widget('Widget_Comments_Recent','pageSize='.Typecho_Widget::widget('Widget_Options')->comNum)->to($comments);
                                             ?>
                                             <?php while($comments->next()): ?>
                                                 <li>
-                                                    <?php $comments->gravatar('50', ''); ?>
+                                                    <?php 
+                                                        $id = $comments -> coid;
+                                                        $res = $db -> Query("SELECT url FROM typecho_comments WHERE coid = $id");
+                                                        $res = $db -> fetchAll($res);
+                                                        echo "<img width='50px' height='50px' src='".$res[0]["url"]."'/>";
+                                                    ?>
                                                     <div class="newCom-data">
                                                         <h6><?php $comments->author(false); ?></h6>
                                                         <p><?php $comments->excerpt(15, '...'); ?></p>

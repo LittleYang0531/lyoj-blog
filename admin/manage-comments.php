@@ -523,7 +523,7 @@ $(document).ready(function () {
                         + id + '-author" name="author" type="text"></p>'
                         + '<p><label for="' + id + '-mail"><?php _e('电子邮箱'); ?></label>'
                         + '<input class="text-s w-100" type="email" name="mail" id="' + id + '-mail"></p>'
-                        + '<p><label for="' + id + '-url"><?php _e('个人主页'); ?></label>'
+                        + '<p><label for="' + id + '-url"><?php _e('头像地址'); ?></label>'
                         + '<input class="text-s w-100" type="text" name="url" id="' + id + '-url"></p></form></td>'
                         + '<td valign="top"><form method="post" action="'
                         + t.attr('rel') + '" class="comment-edit-content"><p><label for="' + id + '-text"><?php _e('内容'); ?></label>'
